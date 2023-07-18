@@ -9,6 +9,12 @@ def calculate_minimum_wire_length(graph, start):
                 if distances[node] + weight < distances[neighbor]:
                     distances[neighbor] = distances[node] + weight
 
+    # Detect negative cycles
+    for node in range(n):
+        for neighbor, weight in graph[node]:
+            if distances[node] + weight < distances[neighbor]:
+                return "Negative cycle detected"
+
     return distances
 
 
